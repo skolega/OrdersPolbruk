@@ -1,0 +1,32 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}AppBundle:Products:index{% endblock %}
+
+{% block body %}
+<h1>Welcome to the Products:index page</h1>
+<a href="{{ path('products_add') }}" class="btn btn-success" role="button">Dodaj produkt</a>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>id</th>
+            <th>nazwa</th>
+            <th>color</th>
+            <th>grubość</th>
+            <th>operacje</th>
+            <th>usuń</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for product in products %}
+        <tr>
+            <td>{{ product.id }}</td>
+            <td>{{ product.name }}</td>
+            <td>{{ product.color }}</td>
+            <td>{{ product.height }}</td>
+            <td><a href="" class="btn btn-success" role="button">Dodaj</a></td>
+            <td><a href="{{ path('product_remove', {'id': product.id}) }}" class="btn btn-danger" role="button">Usuń</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
