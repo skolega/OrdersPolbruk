@@ -5,6 +5,7 @@ namespace AppBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use AppBundle\Entity\Product;
 
 class OrderController extends Controller
 {
@@ -14,19 +15,23 @@ class OrderController extends Controller
      */
     public function indexAction()
     {
+        $order = $this->get('order');
         return array(
-                // ...
+                'order' => $order,
             );    }
 
     /**
-     * @Route("/zamowienie/dodaj")
+     * @Route("/zamowienie/{id}/dodaj", name="add_to_order")
      * @Template()
      */
-    public function addAction()
+    public function addAction(Product $product = null)
     {
-        return array(
-                // ...
-            );    }
+        
+        $order = $this->get('order');
+        $order->add($product);
+        
+        return $this->redirectToRoute('order');
+                }
 
     /**
      * @Route("/zamowienie/remove")

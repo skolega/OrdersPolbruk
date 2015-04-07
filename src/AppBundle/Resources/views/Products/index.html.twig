@@ -23,7 +23,7 @@
             <td>{{ product.name }}</td>
             <td>{{ product.color }}</td>
             <td>{{ product.height }}</td>
-            <td><a href="" class="btn btn-success" role="button">Dodaj</a></td>
+            <td><a href="{{ path('add_to_order', {'id': product.id}) }}" class="btn btn-success" role="button">Dodaj</a></td>
             <td><a href="{{ path('product_remove', {'id': product.id}) }}" class="btn btn-danger" role="button">Usuń</a></td>
         </tr>
         {% endfor %}
