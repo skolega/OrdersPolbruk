@@ -11,7 +11,8 @@
             <th>id</th>
             <th>nazwa</th>
             <th>color</th>
-            <th>grubość</th>
+            <th>wysokość</th>
+            <th>ilość</th>
             <th>operacje</th>
             <th>usuń</th>
         </tr>
@@ -23,10 +24,14 @@
             <td>{{ product.name }}</td>
             <td>{{ product.color }}</td>
             <td>{{ product.height }}</td>
-            <td><a href="" class="btn btn-success" role="button">Dodaj</a></td>
-            <td><a href="{{ path('product_remove', {'id': product.id}) }}" class="btn btn-danger" role="button">Usuń</a></td>
+            <td>{{ product.quantity }}</td>
+            <td><a href="" class="btn btn-success" role="button">Zmien ilość</a></td>
+            <td><a href="{{ path('remove_from_order', {'id': product.id}) }}" class="btn btn-danger" role="button">Usuń</a></td>
         </tr>
         {% endfor %}
     </tbody>
 </table>
+        <a href="{{ path('clear_order') }}" class="btn btn-danger" role="button">Wyczyść zamówienie</a>
+        <a href="{{ path('clear_order') }}" class="btn btn-warning" role="button">Zapisz</a>
+        <a href="{{ path('clear_order') }}" class="btn btn-success" role="button">Zapisz i Wyślij</a>
 {% endblock %}

@@ -35,6 +35,7 @@ class Order
                 'name' => $product->getName(),
                 'color' => $product->getColor(),
                 'height' => $product->getHeight(),
+                'quantity' => 1,
             );
         }
         
@@ -44,5 +45,23 @@ class Order
     }
     
     
+    public function remove(Product $product)
+    {
+        $orders = $this->getProducts();
+        
+        unset($orders[$product->getId()]);
+        
+        $this->session->set('order', $orders);
+        
+        return $this;
+    }
+    
+    
+    public function clear()
+    {
+        $this->session->set('order', array());
+        
+        return $this;
+    }
     
 }

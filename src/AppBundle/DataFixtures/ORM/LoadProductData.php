@@ -22,7 +22,7 @@ class LoadProductsData extends AbstractFixture implements OrderedFixtureInterfac
         for ($j = 0; $j < 200; $j++) {
             $product = new Product();
             $product->setName($faker->company);
-            $product->setColor($faker->text());
+            $product->setColor($faker->colorName);
             $product->setHeight($faker->numberBetween(4, 8));
             $manager->persist($product);
         }

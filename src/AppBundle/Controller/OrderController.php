@@ -9,6 +9,7 @@ use AppBundle\Entity\Product;
 
 class OrderController extends Controller
 {
+
     /**
      * @Route("/zamowienie", name="order")
      * @Template()
@@ -17,31 +18,34 @@ class OrderController extends Controller
     {
         $order = $this->get('order');
         return array(
-                'order' => $order,
-            );    }
+            'order' => $order,
+        );
+    }
 
     /**
      * @Route("/zamowienie/{id}/dodaj", name="add_to_order")
-     * @Template()
+     * 
      */
     public function addAction(Product $product = null)
     {
-        
+
         $order = $this->get('order');
         $order->add($product);
-        
-        return $this->redirectToRoute('order');
-                }
+
+        return $this->redirectToRoute('products_list');
+    }
 
     /**
-     * @Route("/zamowienie/remove")
-     * @Template()
+     * @Route("/zamowienie/{id}/usun", name="remove_from_order")
+     * 
      */
-    public function removeAction()
+    public function removeAction(Product $product = null)
     {
-        return array(
-                // ...
-            );    }
+        $order = $this->get('order');
+        $order->remove($product);
+
+        return $this->redirectToRoute('order');
+    }
 
     /**
      * @Route("/zamowienie/{id}/edit/{quntity}")
@@ -51,7 +55,8 @@ class OrderController extends Controller
     {
         return array(
                 // ...
-            );    }
+        );
+    }
 
     /**
      * @Route("/zamowienie/order")
@@ -61,16 +66,21 @@ class OrderController extends Controller
     {
         return array(
                 // ...
-            );    }
+        );
+    }
 
     /**
-     * @Route("/zamowienie/clear")
-     * @Template()
+     * @Route("/zamowienie/clear", name="clear_order")
+     * 
      */
     public function clearAction()
     {
-        return array(
-                // ...
-            );    }
+        
+        $orders = $this->get('order');
+        
+        $orders->clear();
+        
+        return $this->redirectToRoute('products_list');
+    }
 
 }
